@@ -2,11 +2,12 @@
 <div class="toolbar" role="banner">
   <img height="48px" src="/assets/images/CTM-logo.png" alt="CTM Logo">
   <span>Bid List</span>
+  <span *ngIf="bidService.isAdminUser()" class="badge badge-danger" style="position: absolute; right: 10px; padding: 10px;">ADMIN</span>
 </div>
 
 <div class="content vh-100" role="main">
   <!-- Body -->
-  <div style="width: 100%">
+  <div *ngIf="bidService.isAdminUser()" style="width: 100%">
     <button type="button" class="btn btn-primary" style="float: left;" (click)="openNewBidModal()">New Bid</button>
   </div>
   <app-bid-list-grid [bids]="bids" (deletedRow)="deleteBid($event)" style="width: 100%;"></app-bid-list-grid>

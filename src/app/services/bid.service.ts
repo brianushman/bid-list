@@ -8,8 +8,13 @@ import { Bid } from '../models/bid.model';
   providedIn: 'root'
 })
 export class BidService {
+  isAdmin: boolean = false;
 
   constructor(private http:HttpClient) { }
+
+  public isAdminUser(): boolean {
+    return this.isAdmin;
+  }
 
   public getBids(): Observable<Bid[]> {
     return this.http.get<Bid[]>(`${environment.webApiUrl}api/Bid`);

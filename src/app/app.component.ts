@@ -14,12 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent implements OnInit {
   title = 'CT Mechanical Bid List';
-  public bids: Bid[];
+  bids: Bid[];
   bsModalRef: BsModalRef;
 
   constructor(
     private modalService: BsModalService,
-    private bidService: BidService,
+    public bidService: BidService,
     private toastr: ToastrService) {}
   
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { Bid } from '../models/bid.model';
+import { BidService } from '../services/bid.service';
 
 @Component({
   selector: 'app-bid-list-grid',
@@ -12,7 +13,7 @@ export class BidListGridComponent {
   @Input() bids: Bid[];
   @Output() deletedRow = new EventEmitter();
 
-  constructor() { }
+  constructor(public bidService: BidService) { }
 
   getAllBids(): Bid[] {
     return this.bids.filter(x => !x.IsDeleted);
