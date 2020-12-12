@@ -1,0 +1,22 @@
+<table style="width: 100%" class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Bid Name</th>
+            <th scope="col">Date Due</th>
+            <th scope="col">Time Due</th>
+            <th scope="col">Duct</th>
+            <th scope="col">Pipe</th>
+            <th scope="col">Addendums</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bid of bids">
+            <td>{{bid.Name}}</td>
+            <td>{{formatDate(bid.DateDue)}}</td>
+            <td>{{formatTime(bid.DateDue)}}</td>
+            <td style="text-align: center;"><span [ngClass]="{'oi-circle-check text-success' : bid.IsDuct == true, 'oi-circle-x text-danger': bid.IsDuct == false}" class="oi"></span></td>
+            <td style="text-align: center;"><span [ngClass]="{'oi-circle-check text-success' : bid.IsPipe == true, 'oi-circle-x text-danger': bid.IsPipe == false}" class="oi"></span></td>
+            <td>{{bid.Addendums}}</td>
+        </tr>
+    </tbody>
+</table>
