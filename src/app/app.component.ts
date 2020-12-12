@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   openNewBidModal() {
     const initialState = {
     };
-    this.bsModalRef = this.modalService.show(CreateBidComponent, {initialState});
+    this.bsModalRef = this.modalService.show(CreateBidComponent, {initialState, ignoreBackdropClick: true});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 }

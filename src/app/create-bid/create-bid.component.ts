@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Bid } from '../models/bid.model';
 
@@ -17,9 +18,11 @@ export class CreateBidComponent implements OnInit {
   data: Bid = new Bid();
 
   ngOnInit(): void {
+    this.data.DateDue = new Date();
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      addendums: ['', Validators.required]
+      addendums: ['', Validators.required],
+      date: ['', Validators.required]
     });
   }
 
