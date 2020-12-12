@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
 import { Bid } from './models/bid.model';
+import { ActivatedRoute } from '@angular/router';
+import { CreateBidComponent } from './create-bid/create-bid.component';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +14,19 @@ import { Bid } from './models/bid.model';
 export class AppComponent implements OnInit {
   title = 'CT Mechanical Bid List';
   bids: Bid[] = [];
-  modalRef: BsModalRef;
+  bsModalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService,
+    private route: ActivatedRoute) {}
   
   ngOnInit(): void {
-    var bid1 = new Bid();
-    bid1.Name = "New Bid";
-    bid1.DateDue = moment().toDate();
-    bid1.IsDuct = false;
-    bid1.IsPipe = true;
-    bid1.Addendums = 4;
-    this.bids.push(bid1)
+    this.bids = this.route.snapshot.data['bids'];
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openNewBidModal() {
+    const initialState = {
+    };
+    this.bsModalRef = this.modalService.show(CreateBidComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 }
