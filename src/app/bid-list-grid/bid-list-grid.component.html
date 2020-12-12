@@ -1,6 +1,7 @@
 <table style="width: 100%" class="table table-hover table-striped table-bordered">
     <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col">Bid Name</th>
             <th scope="col">Date Due</th>
             <th scope="col">Time Due</th>
@@ -10,7 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let bid of bids">
+        <tr *ngFor="let bid of getAllBids()">
+            <td style="text-align: center; cursor: pointer;" title="Delete Bid Entry"><span class="oi oi-trash text-danger" (click)="deleteBid(bid)"></span></td>
             <td>{{bid.Name}}</td>
             <td>{{formatDate(bid.DateDue)}}</td>
             <td>{{formatTime(bid.DateDue)}}</td>

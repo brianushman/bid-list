@@ -15,14 +15,16 @@ export class CreateBidComponent implements OnInit {
 
   constructor(public bsModalRef: BsModalRef, private formBuilder: FormBuilder) { }
 
-  data: Bid = new Bid();
+  confirmCallback: (bid: Bid) => void;
 
   ngOnInit(): void {
-    this.data.DateDue = new Date();
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       addendums: ['', Validators.required],
-      date: ['', Validators.required]
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      duct: [false, Validators.required],
+      pipe: [false, Validators.required]
     });
   }
 
@@ -36,6 +38,14 @@ export class CreateBidComponent implements OnInit {
         return;
     }
 
-    alert('SUCCESS!! :-)')
+    var bid = new Bid();
+    bid.Name = this.registerForm.controls['name'].value;
+    bid.DateDue = moment(`${this.registerForm.controls['date'].value.toLocaleDateString("en-US")} ${this.registerForm.controls['time'].value}`).toDate();
+    bid.IsDuct = this.registerForm.controls['duct'].value;
+    bid.IsPipe = this.registerForm.controls['pipe'].value;
+    bid.Addendums = this.registerForm.controls['addendums'].value;
+
+    if(this.confirmCallback != null) this.confirmCallback(bid);
+    this.bsModalRef.hide();
   }
 }

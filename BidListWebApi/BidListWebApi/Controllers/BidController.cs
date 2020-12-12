@@ -32,7 +32,7 @@ namespace BidListWebApi.Controllers
         value.Id = bids.Any() ? bids.Max(x => x.Id) + 1 : 0;
         bids.Add(value);
         WriteAllBids(bids.ToArray());
-        return Request.CreateResponse(HttpStatusCode.OK);
+        return Request.CreateResponse(HttpStatusCode.OK, value);
       }
       catch(Exception ex)
       {

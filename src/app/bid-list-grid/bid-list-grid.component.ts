@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { Bid } from '../models/bid.model';
 
@@ -10,8 +10,13 @@ import { Bid } from '../models/bid.model';
 export class BidListGridComponent {
 
   @Input() bids: Bid[];
+  @Output() deletedRow = new EventEmitter();
 
   constructor() { }
+
+  getAllBids(): Bid[] {
+    return this.bids.filter(x => !x.IsDeleted);
+  }
 
   formatDate(date: Date): string {
     return moment(date).format('M-D-YY');
@@ -19,5 +24,9 @@ export class BidListGridComponent {
 
   formatTime(date: Date): string {
     return moment(date).format('h:mm A');
+  }
+
+  deleteBid(bid: Bid): void {
+    this.deletedRow.emit(bid);
   }
 }
