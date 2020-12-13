@@ -2,8 +2,8 @@
 <div class="toolbar" role="banner">
   <img height="48px" src="/assets/images/CTM-logo.png" alt="CTM Logo">
   <span>Bid List</span>
-  <span *ngIf="bidService.isAdminUser()" class="badge badge-danger" style="position: absolute; right: 10px; padding: 10px;">ADMIN</span>
-  <button *ngIf="!bidService.isAdminUser()" type="button" class="btn btn-info" style="position: absolute; right: 10px;" (click)="openLoginModal()"><span class="oi oi-person"></span> Login</button>
+  <span *ngIf="bidService.isAdminUser()" class="badge badge-danger" style="cursor: pointer; position: absolute; right: 10px; padding: 10px;" (click)="logoff()"><span class="oi oi-account-logout"></span> Logout</span>
+  <button *ngIf="!bidService.isAdminUser()" type="button" class="btn btn-info" style="cursor: pointer; position: absolute; right: 10px;" (click)="openLoginModal()"><span class="oi oi-person"></span> Login</button>
 </div>
 
 <div class="content vh-100" role="main">

@@ -31,6 +31,10 @@ export class AppComponent implements OnInit {
     this.bsModalRef = this.modalService.show(LoginComponent, {ignoreBackdropClick: true});
   }
 
+  logoff() {
+    this.bidService.setAdminUser(false);
+  }
+
   openNewBidModal() {
     const initialState = {
       confirmCallback: (bid: Bid) => {
