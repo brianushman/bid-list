@@ -3,14 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Bid } from '../models/bid.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidService {
+  private authenticatedCookieName: string = 'bid-list-authenticated';
   isAdmin: boolean = false;
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private cookieService: CookieService) {
+      if(this.getCookie()) this.isAdmin = true;
+    }
 
   public isAdminUser(): boolean {
     return this.isAdmin;
@@ -18,6 +24,10 @@ export class BidService {
 
   public setAdminUser(admin: boolean) {
     this.isAdmin = admin;
+    if(this.isAdmin) 
+      this.setCookie(true)
+    else 
+      this.deleteCookie();
   }
 
   public UserLogin(username: string, password: string) {
@@ -34,5 +44,29 @@ export class BidService {
 
   public deleteBid(id: number): Observable<Bid> {
     return this.http.delete<Bid>(`${environment.webApiUrl}api/Bid/${id}`);
+  }
+
+  public getCookie(): any {
+    return this.cookieService.get(this.authenticatedCookieName);
+  }
+
+  public setCookie(value: any) {
+    if(!environment.production) {
+      this.cookieService.set(this.authenticatedCookieName, value, 30, "/", 'localhost', false, "Lax");
+    }
+    else {
+      this.cookieService.set(
+        this.authenticatedCookieName, 
+        value, 
+        100000,
+        '/nudge-dsktop',
+        'brianushman.github.io',
+        true,
+        'Strict');
+    }
+  }
+
+  public deleteCookie(): void {
+    this.cookieService.delete(this.authenticatedCookieName);
   }
 }
