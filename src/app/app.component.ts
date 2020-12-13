@@ -6,6 +6,7 @@ import { Bid } from './models/bid.model';
 import { CreateBidComponent } from './create-bid/create-bid.component';
 import { BidService } from './services/bid.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,10 @@ export class AppComponent implements OnInit {
     this.bidService.getBids().subscribe(x => this.bids = x);
   }
 
+  openLoginModal() {
+    this.bsModalRef = this.modalService.show(LoginComponent, {ignoreBackdropClick: true});
+  }
+
   openNewBidModal() {
     const initialState = {
       confirmCallback: (bid: Bid) => {
@@ -41,7 +46,6 @@ export class AppComponent implements OnInit {
       }
     };
     this.bsModalRef = this.modalService.show(CreateBidComponent, {initialState, ignoreBackdropClick: true});
-    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
   deleteBid(bid: Bid): void {

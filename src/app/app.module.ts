@@ -11,12 +11,14 @@ import { BidListGridComponent } from './bid-list-grid/bid-list-grid.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateBidComponent } from './create-bid/create-bid.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BidListGridComponent,
-    CreateBidComponent
+    CreateBidComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

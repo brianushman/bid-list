@@ -16,6 +16,14 @@ export class BidService {
     return this.isAdmin;
   }
 
+  public setAdminUser(admin: boolean) {
+    this.isAdmin = admin;
+  }
+
+  public UserLogin(username: string, password: string) {
+    return this.http.get(`${environment.webApiUrl}api/Authentication?user=${username}&password=${password}`);
+  }
+
   public getBids(): Observable<Bid[]> {
     return this.http.get<Bid[]>(`${environment.webApiUrl}api/Bid`);
   }
