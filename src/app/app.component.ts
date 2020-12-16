@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent implements OnInit {
   title = 'CT Mechanical Bid List';
-  bids: Bid[];
+  bids: Bid[] = [];
   bsModalRef: BsModalRef;
 
   constructor(

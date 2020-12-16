@@ -10,7 +10,7 @@ import { BidService } from '../services/bid.service';
 })
 export class BidListGridComponent {
 
-  @Input() bids: Bid[];
+  @Input() bids: Bid[] = [];
   @Output() deletedRow = new EventEmitter();
 
   constructor(public bidService: BidService) { }
