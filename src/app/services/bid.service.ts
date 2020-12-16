@@ -59,8 +59,8 @@ export class BidService {
         this.authenticatedCookieName, 
         value, 
         100000,
-        '/nudge-dsktop',
-        'brianushman.github.io',
+        '/',
+        'bids.ctmechanical.com',
         true,
         'Strict');
     }
