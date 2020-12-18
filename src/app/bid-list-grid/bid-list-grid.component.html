@@ -5,6 +5,7 @@
             <th scope="col">Bid Name</th>
             <th scope="col">Date Due</th>
             <th scope="col">Time Due</th>
+            <th scope="col">Estimator</th>
             <th scope="col">Duct</th>
             <th scope="col">Pipe</th>
             <th scope="col">Addendums</th>
@@ -16,6 +17,7 @@
             <td>{{bid.Name}}</td>
             <td>{{formatDate(bid.DateDue)}}</td>
             <td>{{formatTime(bid.DateDue)}}</td>
+            <td>{{bid.Estimator}}</td>
             <td style="text-align: center;"><span [ngClass]="{'oi-circle-check text-success' : bid.IsDuct == true, 'oi-circle-x text-danger': bid.IsDuct == false}" class="oi"></span></td>
             <td style="text-align: center;"><span [ngClass]="{'oi-circle-check text-success' : bid.IsPipe == true, 'oi-circle-x text-danger': bid.IsPipe == false}" class="oi"></span></td>
             <td>{{bid.Addendums}}</td>

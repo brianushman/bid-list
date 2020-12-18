@@ -23,6 +23,7 @@ export class CreateBidComponent implements OnInit {
       addendums: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required],
+      estimator: ['', Validators.required],
       duct: [false, Validators.required],
       pipe: [false, Validators.required]
     });
@@ -41,6 +42,7 @@ export class CreateBidComponent implements OnInit {
     var bid = new Bid();
     bid.Name = this.registerForm.controls['name'].value;
     bid.DateDue = moment(`${this.registerForm.controls['date'].value.toLocaleDateString("en-US")} ${this.registerForm.controls['time'].value}`).toDate();
+    bid.Estimator = this.registerForm.controls['estimator'].value;
     bid.IsDuct = this.registerForm.controls['duct'].value;
     bid.IsPipe = this.registerForm.controls['pipe'].value;
     bid.Addendums = this.registerForm.controls['addendums'].value;

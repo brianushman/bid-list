@@ -34,6 +34,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label>Estimator</label>
+            <input type="text" formControlName="estimator" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.estimator.errors }" />
+            <div *ngIf="submitted && f.estimator.errors" class="invalid-feedback">
+                <div *ngIf="f.estimator.errors.required">Estimator is required</div>
+            </div>
+        </div>
+        <div class="form-group">
             <label style="float: left; margin-right: 15px;">Duct</label>
             <input type="checkbox" formControlName="duct" class="form-control" style="width: 25px;" />
         </div>
